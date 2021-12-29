@@ -1,0 +1,91 @@
+.card {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  background: yellow;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+.card1 {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+.card2 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card3 {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+.card4 {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+.card5 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card6 {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+.card7 {
+  position: absolute;
+  top: 70%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+.card8 {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card9 {
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.input-container {
+  position: absolute;
+  top: 80%;
+  left: 40%;
+  padding: 20px;
+}
+.input-container > button {
+  margin-left: 20px;
+}
+.remaining-choices {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+.choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: yellow;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+}
+.choices-header {
+  text-align: center;
+}
