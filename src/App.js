@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+// import cardPositions database to set the correct location for each card
 import { cardPositions } from './assets/databases'
 import './app.css'
 
 const App = () => {
-  const [desiredOrder, setDesiredOrder] = useState()
+  // the state that keeps track of the order the user has input to rearrange each card
+  const [newOrder, setNewOrder] = useState()
 
+  //  initial state for remaining cards to be moved
   const remainingChoicesInitialState = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  //   state which holds the desired order in an aray so it can be mapped through to render each card
-  const [desiredOrderArray, setDesiredOrderArray] = useState()
 
   //   sets state for all remaining choices
   const [remainingChoices, setRemainingChoices] = useState(
     remainingChoicesInitialState
   )
+  // set state for each card, this state is what is used to determine where the card will be moved to by passing it into the animation property of the motion div
   const [firstCard, setFirstCard] = useState()
   const [secondCard, setSecondCard] = useState()
   const [thirdCard, setThirdCard] = useState()
@@ -26,6 +28,7 @@ const App = () => {
 
   // handles input change and sets it to state
   const handleChange = e => {
+    // takes the last number typed, changes it from a string to an integer to compare against the remaining choices array
     let lastNumberTyped = parseInt(e.target.value.toString().slice(-1))
 
     // guard clause to compare remaining choices to last typed number to make sure each number is only picked once.
@@ -44,14 +47,16 @@ const App = () => {
       e.target.value = Math.floor(e.target.value / 10)
       return
     }
-    setDesiredOrder(e.target.value.toString(16).split(''))
+    setNewOrder(e.target.value.toString(16).split(''))
   }
-
+  //  this function sets all of the Card States
   const setNewCardStates = array => {
-    console.log(array, 'test')
+    // for loop that loops through the array passed into the function which contains the user's input
     for (let i = 0; i < array.length; i++) {
-      let n = parseInt(desiredOrder[i])
+      //  sets n to the current value at the i index of the passed in array
+      let n = parseInt(array[i])
 
+      //  a switch statement that takes each case of the value of n and sets the card's location. If n is 7, it set's seventhCard's state to an object which holds the location the card should move to.
       switch (n) {
         case 1:
           setFirstCard(cardPositions[i])
@@ -79,13 +84,13 @@ const App = () => {
           break
         case 9:
           setNinthCard(cardPositions[i])
-          console.log(ninthCard)
           break
       }
     }
   }
 
-  const handleSubmit = () => {
+  // function that is called when the button is clicked
+  const handleRearrange = () => {
     //   guard clause that throws an alert if each number hasn't been selected yet.
     if (remainingChoices.length > 0) {
       alert(
@@ -93,14 +98,14 @@ const App = () => {
       )
       return
     }
-
-    setDesiredOrderArray(desiredOrder.toString(16).split(''))
-    setNewCardStates(desiredOrder)
+    // takes the order the user has input, and sets the state for each card which changes the location
+    setNewCardStates(newOrder)
+    // resets the input value so the input is blank after the rearrange button is clicked
     document.getElementById('input').value = ''
+    //  resets the remaining choices array to its initial state after the button is clicked
     setRemainingChoices(remainingChoicesInitialState)
   }
-  console.log(desiredOrder)
-  console.log(firstCard)
+
   return (
     <>
       <div>
@@ -111,6 +116,7 @@ const App = () => {
           ))}
         </div>
         <motion.div
+          // this is where the state which contains the absolute postioning for each card is passed into for the animation effect
           animate={firstCard}
           transition={{
             duration: 2,
@@ -199,7 +205,7 @@ const App = () => {
           name="newOrder"
           onChange={e => handleChange(e)}
         />
-        <button onClick={handleSubmit}>Rearrange</button>
+        <button onClick={handleRearrange}>Rearrange</button>
       </div>
     </>
   )

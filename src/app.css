@@ -1,7 +1,7 @@
 .card {
   display: flex;
-  width: 150px;
-  height: 150px;
+  width: 8%;
+  height: 16%;
   background: yellow;
   justify-content: center;
   align-items: center;
@@ -82,8 +82,8 @@
   justify-content: center;
   align-items: center;
   background: yellow;
-  width: 60px;
-  height: 60px;
+  width: 8%;
+  height: auto;
   font-size: 2rem;
 }
 .choices-header {
